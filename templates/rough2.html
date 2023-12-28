@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .audio {
+            display: flex;
+            align-items: center;
+        }
+
+        audio {
+            margin-right: 10px;
+        }
+
+        h1 {
+            justify-content: center;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>DASHBOARD</h1>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>DURATION OF SENTENCE</th>
+                <th>HINDI AUDIO FILES</th>
+                <th>POSSIBLE HINDI ASR SOLUTIONS</th>
+                <th>POSSIBLE HINDI ASR SOLUTIONS IN TRANSLITERATION LETTERS</th>
+                <th>TEXT BOX FOR MANUAL CORRECTION</th>
+                <th>CONVERTED TEXT FROM TRANSLITERATION TO HINDI</th>
+                <th>BUTTON TO RUN PUNCTUATION MODELS </th>
+                <th>PUNCTUATION MODELS</th>
+                <th>TEXT BOX FOR MANUAL CORRECTION POST PUNCTUATION</th>
+                <th>TRANSLITERATION FROM LEFT BOX</th>
+                <th>TRANSLITERATION FROM LEFT BOX</th>
+                <th>BUTTON TO RUN MACHINE TRANSLATION MODELS</th>
+                <th>POSSIBLE HINDI TO ENGLISH MT SOLUTIONS</th>
+                <th>TEXT BOX FOR MANUAL CORRECTION_MT</th>
+                <th>BUTTON TO RUN PUNCTUATION MODELS 2</th>
+                <th>PUNCTUATION MODELS 2</th>
+                <th>TEXT BOX FOR MANUAL CORRECTION POST PUNCTUATION 2</th>
+                <th>BUTTON FOR RUN TTS 2</th>
+                <th>ORITIGNAL HINDI AUDIO </th>
+                <th>FINAL HINDI TEXT </th>
+                <th>TRANSLITERATIO OF FINAL HINDI TEXT </th>
+                <th>FINAL ENGLISH TEXT </th>
+                <th>DROP DOWN BOX OF KIND OF SENTENCE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="duration1">Sample Duration 1</td>
+                <td class="audio">
+                    <input type="" accept="audio/*" id="audioFile1"
+                        onchange="updateDuration('audioFile1', 'duration1')" />
+                    <audio controls id="audioPlayer1">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <button onclick="playAudio('audioFile1', 'audioPlayer1')">Play</button>
+                </td>
+                <td><select id="asrSolution1" onchange="handleASRSolutionSelection('asrSolution1')">
+                        <!-- Add options as needed -->
+                        <option value="Option 1">Option 1</option>
+                        <option value="Option 2">Option 2</option>
+                        <option value="Option 3">Option 3</option>
+                    </select></td>
+                <td>Transliteration Solutions 1</td>
+                <td><input type="text" placeholder="Manual Correction" /></td>
+                <td>Converted Text 1</td>
+                <td><button onclick="runPunctuationModels('textArea1')">Run</button></td>
+                <td>Punctuation Models 1</td>
+                <td><input type="text" placeholder="Manual Correction Post Punctuation" /></td>
+                <td>Transliteration 1</td>
+                <td>Transliteration 1</td>
+                <td><button onclick="runMTModels('textAreaMT1')">Run</button></td>
+                <td>MT Solutions 1</td>
+                <td><input type="text" placeholder="Manual Correction MT" /></td>
+                <td><button onclick="runPunctuationModels2('textArea2')">Run</button></td>
+                <td>Punctuation Models 2</td>
+                <td><input type="text" placeholder="Manual Correction Post Punctuation 2" /></td>
+                <td><button onclick="runTTS2()">Run</button></td>
+                <td class="audio">
+                    <input type="file" accept="audio/*" id="audioFile1"
+                        onchange="updateDuration('audioFile1', 'duration1')" />
+                    <audio controls id="audioPlayer1">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <button onclick="playAudio('audioFile1', 'audioPlayer1')">Play</button>
+                </td>
+                <td><input type="text" placeholder="Manual Correction" /></td>
+                <td>Transliteration Solutions 1</td>
+                <td>Transliteration Solutions 1</td>
+                <td><select id="asrSolution1" onchange="handleASRSolutionSelection('asrSolution1')">
+                        <!-- Add options as needed -->
+                        <option value="Option 1">Option 1</option>
+                        <option value="Option 2">Option 2</option>
+                        <option value="Option 3">Option 3</option>
+                    </select></td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+
+    <script>
+        function updateDuration(fileInputId, durationId) {
+            const fileInput = document.getElementById(fileInputId);
+            const durationElement = document.getElementById(durationId);
+
+            const file = fileInput.files[0];
+            if (file) {
+                const objectURL = URL.createObjectURL(file);
+                const audioTemp = new Audio(objectURL);
+                audioTemp.addEventListener('loadedmetadata', function () {
+                    const duration = audioTemp.duration.toFixed(2); // Duration in seconds
+                    durationElement.textContent = `Duration: ${duration} seconds`;
+                });
+            }
+        }
+
+        function playAudio(fileInputId, audioPlayerId) {
+            const fileInput = document.getElementById(fileInputId);
+            const audioPlayer = document.getElementById(audioPlayerId);
+
+            const file = fileInput.files[0];
+            if (file) {
+                const objectURL = URL.createObjectURL(file);
+                audioPlayer.src = objectURL;
+                audioPlayer.play();
+            }
+        }
+
+        function runPunctuationModels(textAreaId) {
+            // Implement logic to run punctuation models for the given text area
+            const textArea = document.getElementById(textAreaId);
+            // Your logic here...
+        }
+
+        function runMTModels(textAreaMTId) {
+            // Implement logic to run machine translation models for the given text area
+            const textAreaMT = document.getElementById(textAreaMTId);
+            // Your logic here...
+        }
+
+        function runPunctuationModels2(textAreaId) {
+            // Implement logic to run punctuation models for the given text area
+            const textArea = document.getElementById(textAreaId);
+            // Your logic here...
+        }
+
+        function runTTS2() {
+            // Implement logic to run text-to-speech models for the second button
+            // Your logic here...
+        }
+        function handleASRSolutionSelection(dropdownId) {
+            // Implement logic to handle the selection of the ASR solution
+            const dropdown = document.getElementById(dropdownId);
+            const selectedOption = dropdown.options[dropdown.selectedIndex].value;
+
+            // Your logic here...
+            console.log('Selected ASR Solution:', selectedOption);
+        }
+
+    </script>
+</body>
+
+</html>
